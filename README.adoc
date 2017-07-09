@@ -52,6 +52,7 @@ Accept: application/json
 HTTP/1.1 200 OK
 Content-Type: application/json
 ----
+----
 {
     "sum": 12.3,
     "avg": 12.3,
