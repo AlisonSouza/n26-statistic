@@ -1,7 +1,5 @@
 package com.alisonsouza.n26.statistic.service;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,9 +16,4 @@ public class TransactionService {
 		
 		dbMemory.newTransaction(transaction);
 	}
-	
-//	public List<Transaction> findAll() {
-//		
-//		return dbMemory.findAll();
-//	}
 }

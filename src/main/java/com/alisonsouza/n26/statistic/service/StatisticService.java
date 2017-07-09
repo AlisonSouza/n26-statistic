@@ -10,7 +10,7 @@ import com.alisonsouza.n26.statistic.repository.DBMemory;
 public class StatisticService {
 
 	@Autowired
-	DBMemory dbMemory;
+	private DBMemory dbMemory;
 	
 	public Statistic findLast60Seconds() {
 		
