@@ -13,28 +13,28 @@ The main use case for this API is to calculate real time statistic from the last
 Every Time a new transaction happened, this endpoint will be called.
 
 Where:
-* amount is double specifying transaction amount
-* timestamp is epoch in millis in UTC time zone specifying transaction time
+* Amount is double specifying transaction amount
+* Timestamp is epoch in millis in UTC time zone specifying transaction time
 
 #### Request sample
 POST /api/transactions HTTP/1.1
 Content-Type: application/json
-----
+```
 {
     "amount": 12.3,
     "timestamp": 1478192204000
 }
-----
-
+```
 #### Success response sample
-----
+
+```
 201 Created
-----
+```
 
 #### Error response sample - timestamp is older than 60 seconds
-----
+```
 204 No Content
-----
+```
 
 ### Statistics
 This is the main endpoint of this task, this endpoint have to execute in constant time
