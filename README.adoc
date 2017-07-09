@@ -1,0 +1,116 @@
+# N26-API
+
+### Introduction
+
+This is an API using https://projects.spring.io/spring-boot/[Spring Boot], integration with http://camel.apache.org[Camel] and Maven for compiling and building the application. It provides a restful service and documented with http://swagger.io[Swagger].
+
+The main use case for this API is to calculate real time statistic from the last 60 seconds. There will be two APIs, one of
+them is called every time a transaction is made. It is also the sole input of this rest
+API. The other one returns the statistic based of the transactions of the last 60.
+
+## Specs
+
+### Transactions
+
+Every Time a new transaction happened, this endpoint will be called.
+
+Where:
+* amount is double specifying transaction amount
+* timestamp is epoch in millis in UTC time zone specifying transaction time
+
+#### Request sample
+```http
+POST /api/transactions HTTP/1.1
+Content-Type: application/json
+
+{
+    "amount": 12.3,
+    "timestamp": 1478192204000
+}
+
+```
+#### Success response sample
+----
+http
+HTTP/1.1 201 Created
+----
+
+#### Error response sample - timestamp is older than 60 seconds
+----
+http
+HTTP/1.1 204 No Content
+----
+
+### Statistics
+This is the main endpoint of this task, this endpoint have to execute in constant time
+and memory (O(1)). It returns the statistic based on the transactions which happened
+in the last 60 seconds.
+
+#### Request sample
+```http
+GET /api/statistics HTTP/1.1
+Accept: application/json
+```
+
+### Should return:
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+----
+{
+    "sum": 12.3,
+    "avg": 12.3,
+    "max": 12.3,
+    "min": 12.3,
+    "count": 1
+}
+----
+
+Where:
+* sum is a double specifying the total sum of transaction value in the last 60
+seconds
+* avg is a double specifying the average amount of transaction value in the last
+60 seconds
+* max is a double specifying single highest transaction value in the last 60
+seconds
+* min is a double specifying single lowest transaction value in the last 60
+seconds
+* count is a long specifying the total number of transactions happened in the last
+60 seconds
+
+
+### Build
+You can build using:
+
+  $ mvn package
+
+### Run
+You can run using:
+
+  $ mvn spring-boot:run
+
+### Test
+After the Spring Boot application is started, you can open the following URL in your web browser to access the REST endpoint and request the address for "Amsterdam": http://localhost:8080/camel/find/?address=Amsterdam
+
+
+The REST endpoint from the command line:
+
+    $ curl http://localhost:8080/camel/find/?address=Amsterdam
+
+### Should return:
+----
+{
+  "results" : [ {
+    "formattedAddress" : "Amsterdam, Netherlands",
+    "location" : {
+      "lat" : 52.3702157,
+      "lng" : 4.895167900000001
+    }
+  } ]
+}
+----
+
+### Documentation
+The Swagger documentation is at: http://localhost:8080/camel/api-doc and can be retrieved with the following command:
+
+    $ curl http://localhost:8080/camel/api-doc
