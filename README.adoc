@@ -13,6 +13,7 @@ The main use case for this API is to calculate real time statistic from the last
 Every Time a new transaction happened, this endpoint will be called.
 
 Where:
+
 * Amount is double specifying transaction amount
 * Timestamp is epoch in millis in UTC time zone specifying transaction time
 
@@ -63,16 +64,12 @@ Content-Type: application/json
 ----
 
 Where:
-* sum is a double specifying the total sum of transaction value in the last 60
-seconds
-* avg is a double specifying the average amount of transaction value in the last
-60 seconds
-* max is a double specifying single highest transaction value in the last 60
-seconds
-* min is a double specifying single lowest transaction value in the last 60
-seconds
-* count is a long specifying the total number of transactions happened in the last
-60 seconds
+
+* sum is a double specifying the total sum of transaction value in the last 60 seconds
+* avg is a double specifying the average amount of transaction value in the last 60 seconds
+* max is a double specifying single highest transaction value in the last 60 seconds
+* min is a double specifying single lowest transaction value in the last 60 seconds
+* count is a long specifying the total number of transactions happened in the last 60 seconds
 
 
 ### Build
