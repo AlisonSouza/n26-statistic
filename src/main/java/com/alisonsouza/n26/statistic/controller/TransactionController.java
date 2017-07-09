@@ -2,6 +2,7 @@ package com.alisonsouza.n26.statistic.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,7 +19,7 @@ public class TransactionController {
 	private TransactionService transactionService;
 
 	@SuppressWarnings("rawtypes")
-	@PostMapping(consumes = "application/json")
+	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> createTransaction(@RequestBody Transaction transaction) {
 		
 		if(transaction.getTimestamp().after(DateHelperUtils.getLast60SecondsByNow())) {
