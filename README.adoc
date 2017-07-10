@@ -86,8 +86,3 @@ The REST endpoint from the command line:
 
     $ curl http://localhost:8080/api/statistic
 
-
-### Documentation
-The Swagger documentation is at: http://localhost:8080/camel/api-doc and can be retrieved with the following command:
-
-    $ curl http://localhost:8080/camel/api-doc
